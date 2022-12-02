@@ -9,5 +9,10 @@ pipeline {
                 git branch:"master",credentialsId:"www",url:"https://github.com/shampine24/maven-web-application.git"
             }
         }
+        stage("package"){
+            steps{
+                sh "mvn clean package"
+            }
+        }
     }
 }
