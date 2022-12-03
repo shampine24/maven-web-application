@@ -16,7 +16,9 @@ pipeline {
         }
         stage("Build an image"){
             steps{
+                sh "docker rmi -f $(docker images -a -q) || true"
                 sh "docker build -t uppusrinath/maven-web-app:${env.BUILD_NUMBER} ."
+                sh "docker run -d -p 8081:8080 uppusrinath/maven-web-app:${env.BUILD_NUMBER}"
             }
         }
     }
